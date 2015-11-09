@@ -16,5 +16,21 @@ NOTES:
 #include <stdio.h>
 
 void * studentsCount(int *Arr, int len, int score, int *lessCount, int *moreCount) {
-	return NULL;
+	int less,eq;
+	*lessCount = 0;
+	*moreCount = 0;
+	if (Arr && score >= 0 && len > 0){
+		for (less = 0; less<=(len-1) && (Arr[less] < score) && Arr[less] >= 0; less++)
+		{
+			if (less <(len - 1) && (Arr[less] > Arr[less + 1]))
+				return  NULL;
+		}
+		if (less <= (len - 1) && Arr[less]<0)
+				return NULL;
+		*lessCount = less;
+		for (eq = less; eq<=(len-1) && Arr[eq] == score ; eq++);
+		*moreCount = len - less - (eq - less);
+	}
+	else
+	 return NULL;
 }
